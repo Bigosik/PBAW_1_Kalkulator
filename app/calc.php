@@ -1,6 +1,7 @@
 <?php
 // KONTROLER strony kalkulatora
 require_once dirname(__FILE__).'/../config.php';
+require_once dirname(__FILE__).'/function.php';
 
 // W kontrolerze niczego nie wysyła się do klienta.
 // Wysłaniem odpowiedzi zajmie się odpowiedni widok.
@@ -8,63 +9,60 @@ require_once dirname(__FILE__).'/../config.php';
 
 // 1. pobranie parametrów
 
-$x = $_REQUEST ['x'];
-$y = $_REQUEST ['y'];
-$operation = $_REQUEST ['op'];
+$value = $_REQUEST ['value'];
+$exp_num = $_REQUEST ['exp_num'];
+$exp_den = $_REQUEST ['exp_den'];
 
 // 2. walidacja parametrów z przygotowaniem zmiennych dla widoku
 
 // sprawdzenie, czy parametry zostały przekazane
-if ( ! (isset($x) && isset($y) && isset($operation))) {
+if ( ! (isset($value) && isset($exp_den) && isset($exp_num))) {
 	//sytuacja wystąpi kiedy np. kontroler zostanie wywołany bezpośrednio - nie z formularza
 	$messages [] = 'Błędne wywołanie aplikacji. Brak jednego z parametrów.';
 }
 
 // sprawdzenie, czy potrzebne wartości zostały przekazane
-if ( $x == "") {
-	$messages [] = 'Nie podano liczby 1';
+if ( $value == "") {
+	$messages [] = 'Nie podano podstawy';
 }
-if ( $y == "") {
-	$messages [] = 'Nie podano liczby 2';
+if ( $exp_num == "") {
+	$messages [] = 'Nie podano licznika liczby wykładniczej';
 }
-
+if ( $exp_den == "") {
+	$messages [] = 'Nie podano mianownika liczby wykładniczej';
+}
 //nie ma sensu walidować dalej gdy brak parametrów
 if (empty( $messages )) {
-	
-	// sprawdzenie, czy $x i $y są liczbami całkowitymi
-	if (! is_numeric( $x )) {
-		$messages [] = 'Pierwsza wartość nie jest liczbą całkowitą';
-	}
-	
-	if (! is_numeric( $y )) {
-		$messages [] = 'Druga wartość nie jest liczbą całkowitą';
-	}	
 
+	// sprawdzenie, czy wartości są liczbami całkowitymi
+	if (! is_numeric( $value )) {
+		$messages [] = 'Wprowadzona podstawa liczby nie jest liczbą całkowitą';
+	}
+
+	if (! is_numeric( $exp_num )) {
+		$messages [] = 'Licznik wykładnika nie jest liczbą całkowitą';
+	}
+
+	if (! is_numeric( $exp_den )) {
+		$messages [] = 'Mianownik wykładnika nie jest liczbą całkowitą';
+	}
+}
+
+if (exp_den=0)
+{
+	$messages [] = 'Mianownik nie może być 0!';
 }
 
 // 3. wykonaj zadanie jeśli wszystko w porządku
 
 if (empty ( $messages )) { // gdy brak błędów
-	
+
 	//konwersja parametrów na int
-	$x = intval($x);
-	$y = intval($y);
-	
-	//wykonanie operacji
-	switch ($operation) {
-		case 'minus' :
-			$result = $x - $y;
-			break;
-		case 'times' :
-			$result = $x * $y;
-			break;
-		case 'div' :
-			$result = $x / $y;
-			break;
-		default :
-			$result = $x + $y;
-			break;
-	}
+	$value = intval($value);
+	$exp_num = intval($exp_num);
+	$exp_den = intval($exp_den);
+
+	//trzeba podpiąć funkcje
 }
 
 // 4. Wywołanie widoku z przekazaniem zmiennych
