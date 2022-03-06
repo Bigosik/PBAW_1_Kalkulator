@@ -3,23 +3,40 @@
 <head>
 <meta charset="utf-8" />
 <title>Kalkulator</title>
+<style>
+	body
+	{
+		font-family: "Verdana";
+	}
+	td
+	{
+			vertical-align: top;
+	}
+</style>
 </head>
 <body>
 
 <form action="<?php print(_APP_URL);?>/app/calc.php" method="post">
-	<label for="id_x">Liczba 1: </label>
-	<input id="id_x" type="text" name="x" value="<?php if (isset($x)) print($x); ?>" /><br />
-	<label for="id_op">Operacja: </label>
-	<select name="op">
-		<option value="plus">+</option>
-		<option value="minus">-</option>
-		<option value="times">*</option>
-		<option value="div">/</option>
-	</select><br />
-	<label for="id_y">Liczba 2: </label>
-	<input id="id_y" type="text" name="y" value="<?php if (isset($y)) print($y); ?>" /><br />
+	Podaj liczbę, jakiej przybliżenie chcesz obliczyć:
+	<table>
+		<tr>
+			<td></td><td STYLE="border-bottom: 2px solid black">
+				<input type="text" STYLE="width: 10px" name="exp_num" value="<?php if (isset($exp_num)) print($exp_num); ?>">
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2"><FONT SIZE="20">
+				<input type="text" STYLE="width: 90px; font-size: 60px; vertical-align: middle" name="value" value="<?php if (isset($value)) print($value); ?>">
+			</td><td>
+				<input type="text" STYLE="width: 10px" name="exp_den" value="<?php if (isset($exp_den)) print($exp_den); ?>">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+	</table>
 	<input type="submit" value="Oblicz" />
-</form>	
+</form>
 
 <?php
 //wyświeltenie listy błędów, jeśli istnieją
