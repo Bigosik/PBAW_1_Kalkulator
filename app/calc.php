@@ -48,7 +48,7 @@ if (empty( $messages )) {
 	}
 }
 
-if (exp_den=0)
+if ($exp_den == 0)
 {
 	$messages [] = 'Mianownik nie może być 0!';
 }
@@ -61,6 +61,8 @@ if (empty ( $messages )) { // gdy brak błędów
 	$value = intval($value);
 	$exp_num = intval($exp_num);
 	$exp_den = intval($exp_den);
+
+	$result = root(power(invert($value, $exp_num, $exp_den), $exp_num), $exp_den);
 
 	//trzeba podpiąć funkcje
 }
