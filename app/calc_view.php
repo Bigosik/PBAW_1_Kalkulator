@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Kalkulator</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 <style>
 	body
 	{
@@ -19,6 +20,11 @@
 </head>
 <body>
 
+	<div	 style="width:90%; margin: 2em auto">
+		<a href="<?php print(_APP_ROOT); ?>/app/inna_chroniona.php" class="pure-button">kolejna chroniona strona</a>
+		<a href="<?php print(_APP_ROOT); ?>/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
+	</div>
+
 <form action="<?php print(_APP_URL);?>/app/calc.php" method="post">
 	<center><font size="5">Witam w kalkulatorze obliczającym przybliżoną wartość pierwiastna n-tego stopnia. <br><br>
 	<font size="3">Wpisz w dużym oknie podstawę liczby, a w małe okienka licznik oraz mianownik wykładnika.<br>
@@ -26,21 +32,21 @@
 	<table>
 		<tr>
 			<td></td><td STYLE="border-bottom: 2px solid black">
-				<input type="text" STYLE="width: 20px; font-weight: bold" name="exp_num" value="<?php if (isset($exp_num)) print($exp_num); ?>">
+				<input type="text" STYLE="color: #151515; width: 20px; font-weight: bold" name="exp_num" value="<?php if (isset($exp_num)) print($exp_num); ?>">
 			</td>
 		</tr>
 		<tr>
-			<td rowspan="2"><FONT SIZE="20">
-				<input type="text" STYLE="width: 90px; font-size: 60px; vertical-align: middle"" name="value" value="<?php if (isset($value)) print($value); ?>">
+			<td rowspan="2">
+				<input type="text" STYLE="color: #151515; width: 90px; font-size: 60px; vertical-align: middle"" name="value" value="<?php if (isset($value)) print($value); ?>">
 			</td><td>
-				<input type="text" STYLE="width: 20px; font-weight: bold" name="exp_den" value="<?php if (isset($exp_den)) print($exp_den); ?>">
+				<input type="text" STYLE="color: #151515; width: 20px; font-weight: bold" name="exp_den" value="<?php if (isset($exp_den)) print($exp_den); ?>">
 			</td>
 		</tr>
 		<tr>
 			<td></td>
 		</tr>
 	</table>
-	<input type="submit" style="font-weight: bold"value="Oblicz" />
+	<input type="submit" style="font-weight: bold; color: #151515;"value="Oblicz" />
 </center>
 </form>
 
