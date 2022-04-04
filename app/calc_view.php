@@ -1,3 +1,8 @@
+<?php
+require_once dirname(__FILE__).'/../config.php';
+$logged = true;
+include _ROOT_PATH.'/app/templates/top.php'; ?>
+
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
@@ -7,10 +12,7 @@
 <style>
 	body
 	{
-		font-family: "Verdana";
-		background-color: #151515;
-		color: #eeeeee;
-		margin-top: 50px;
+		color: #ffffff;
 	}
 	td
 	{
@@ -20,33 +22,31 @@
 </head>
 <body>
 
-	<div	 style="width:90%; margin: 2em auto">
-		<a href="<?php print(_APP_ROOT); ?>/app/inna_chroniona.php" class="pure-button">kolejna chroniona strona</a>
-		<a href="<?php print(_APP_ROOT); ?>/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
-	</div>
-
+<section id="home" data-stellar-background-ratio="0.5">
+		 <div class="overlay"></div>
+		 <div class="container">
+					<div class="row" style="position: relative">
 <form action="<?php print(_APP_URL);?>/app/calc.php" method="post">
-	<center><font size="5">Witam w kalkulatorze obliczającym przybliżoną wartość pierwiastna n-tego stopnia. <br><br>
-	<font size="3">Wpisz w dużym oknie podstawę liczby, a w małe okienka licznik oraz mianownik wykładnika.<br>
-		Następnie naciśnij przycisk "Oblicz". <br><br>
+	<center><font size="5.5">Wpisz w dużym oknie podstawę liczby, a w małe okienka licznik oraz mianownik wykładnika.<br>
+		Następnie naciśnij przycisk "Oblicz". <br><br><font size="4">
 	<table>
 		<tr>
 			<td></td><td STYLE="border-bottom: 2px solid black">
-				<input type="text" STYLE="color: #151515; width: 20px; font-weight: bold" name="exp_num" value="<?php if (isset($exp_num)) print($exp_num); ?>">
+				<input type="text" STYLE="color: #151515; width: 40px; font-weight: bold" name="exp_num" value="<?php if (isset($exp_num)) print($exp_num); ?>">
 			</td>
 		</tr>
 		<tr>
 			<td rowspan="2">
-				<input type="text" STYLE="color: #151515; width: 90px; font-size: 60px; vertical-align: middle"" name="value" value="<?php if (isset($value)) print($value); ?>">
+				<input type="text" STYLE="color: #151515; width: 150px; font-size: 70px; vertical-align: middle"" name="value" value="<?php if (isset($value)) print($value); ?>">
 			</td><td>
-				<input type="text" STYLE="color: #151515; width: 20px; font-weight: bold" name="exp_den" value="<?php if (isset($exp_den)) print($exp_den); ?>">
+				<input type="text" STYLE="color: #151515; width: 40px; font-weight: bold" name="exp_den" value="<?php if (isset($exp_den)) print($exp_den); ?>">
 			</td>
 		</tr>
 		<tr>
 			<td></td>
 		</tr>
 	</table>
-	<input type="submit" style="font-weight: bold; color: #151515;"value="Oblicz" />
+	<br><input type="submit" class="section-btn" data-target="#modal-form"; value="Oblicz"/>
 </center>
 </form>
 
@@ -64,10 +64,14 @@ if (isset($messages)) {
 ?>
 
 <?php if (isset($result)){ ?>
-<center><div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: #339933; width:300px;">
+<center><div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: #00F260; width:300px;">
 <?php echo 'Wynik: '.$result; ?>
 </div></center>
 <?php } ?>
 
-</body>
-</html>
+</div>
+</div>
+</div>
+</section>
+
+<?php include _ROOT_PATH.'/app/templates/bottom.php'; ?>

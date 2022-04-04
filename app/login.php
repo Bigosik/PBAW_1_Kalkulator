@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../../config.php';
+require_once dirname(__FILE__).'/config.php';
 
 //pobranie parametrów
 function getParamsLogin(&$form){
@@ -39,9 +39,9 @@ function validateLogin(&$form,&$messages){
 		$_SESSION['role'] = 'user';
 		return true;
 	}
-	
+
 	$messages [] = 'Niepoprawny login lub hasło';
-	return false; 
+	return false;
 }
 
 //inicjacja potrzebnych zmiennych
@@ -53,13 +53,13 @@ getParamsLogin($form);
 
 if (!validateLogin($form,$messages)) {
 	//jeśli błąd logowania to wyświetl formularz z tekstami z $messages
-	include _ROOT_PATH.'/app/security/login_view.php';
-} else { 
+	include _ROOT_PATH.'/app/login_view.php';
+} else {
 	//ok przekieruj lub "forward" na stronę główną
-	
+
 	//redirect - przeglądarka dostanie ten adres do "przejścia" na niego (wysłania kolejnego żądania)
 	header("Location: "._APP_URL);
-	
+
 	//"forward"
 	//include _ROOT_PATH.'/index.php';
 }

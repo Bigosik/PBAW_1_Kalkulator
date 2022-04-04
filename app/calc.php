@@ -8,7 +8,7 @@ require_once dirname(__FILE__).'/function.php';
 // Parametry do widoku przekazujemy przez zmienne.
 
 //ochrona kontrolera - poniższy skrypt przerwie przetwarzanie w tym punkcie gdy użytkownik jest niezalogowany
-include _ROOT_PATH.'/app/security/check.php';
+include _ROOT_PATH.'/app/check.php';
 
 // 1. pobranie parametrów
 function getParams(&$value, &$exp_num, &$exp_den){
@@ -61,27 +61,27 @@ function validate(&$value, &$exp_num, &$exp_den, &$messages){
 		return (empty( $messages )) ? true : false;
 
 }
-
-function result(&$value, &$exp_num, &$exp_den, &$result, &$role){
+function result(&$value, &$exp_num, &$exp_den, &$result, &$messages){
 	global $role;
-		$messages [] = 'Admins';
+	return root(power(invert($value, $exp_num, $exp_den), $exp_num), $exp_den);
+		/*
 if($role == 'admin'){
-	$result = root(power(invert($value, $exp_num, $exp_den), $exp_num), $exp_den);
+	return root(power(invert($value, $exp_num, $exp_den), $exp_num), $exp_den);
 } else {
-	return $messages;
+	$messages [] = 'Wynik może zobaczyć tylko administrator!';
+}*/
 }
-	}
 
 
 $exp_den = null;
 $exp_num = null;
 $messages = array();
 $value = null;
-$result = false;
+$result = null;
 
 getParams($value, $exp_num, $exp_den);
 if (validate($value, $exp_num, $exp_den, $messages)){
-	result($value, $exp_num, $exp_den, $result, $messages);
+	$result = result($value, $exp_num, $exp_den, $result, $messages);
 }
 
 // 4. Wywołanie widoku z przekazaniem zmiennych
